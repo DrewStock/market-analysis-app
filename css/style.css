@@ -1,0 +1,13 @@
+#images-holder {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.image-div {
+  /*width: 25%;*/
+}
+
+img {
+  width: 200px;
+}
