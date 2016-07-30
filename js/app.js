@@ -3,6 +3,8 @@ var imageObjectConstructor = function(name, source) {
   this.imageSource = source;
   this.forVotes = 0;
   this.name = name;
+  this.y = this.forVotes;
+  this.label = name;
 };
 
 // Array of product image objects
@@ -38,7 +40,7 @@ imagePanel.addEventListener("click", randomImageSelector, false);
 // imagePanel.addEventListener("click", voteCounter, false);
 
 // Event listner to call seeResults() on click event: function displays voting results in a table
-document.getElementById("results-button").addEventListener("click", seeResults, false);
+// document.getElementById("results-button").addEventListener("click", seeResults, false);
 
 var chosenImages = [];
 
@@ -82,10 +84,15 @@ function recordClick(event) {
     console.log("  Compare to: "+possibleImages[index].imageSource);
     if (clickedImageSource.indexOf(possibleImages[index].imageSource) >= 0) {
       possibleImages[index].forVotes++;
+      possibleImages[index].y++;
       console.log("    Clicked Item: "+possibleImages[index].name);
       console.log(possibleImages[index].forVotes);
+      }
     }
-  }
+
+if (clickCounter >= 15) {
+  chart.render();
+}
 
   // CODE THAT IS CURRENTLY NOT WORKING AS INTENDED
   // userPicks = [];
@@ -98,41 +105,41 @@ function recordClick(event) {
 };
 
 // Function that creates a table to display image voting results and adds the table to the document using DOM manipulation
-function seeResults(event) {
-    var positionVR = document.getElementById("voting-results");
-    var newTable = document.createElement("table");
-    newTable.id = "vote-totals";
-    positionVR.appendChild(newTable);
-    // Creates table header
-    var table = document.getElementById("vote-totals");
-    var tableHeader = document.createElement("tr");
-    var tableHeaderCell = document.createElement("th");
-    tableHeaderCell.setAttribute("colspan", "2");
-    var tableHeaderName = document.createTextNode("User Vote Totals");
-    tableHeaderCell.appendChild(tableHeaderName);
-    tableHeader.appendChild(tableHeaderCell);
-    table.appendChild(tableHeader);
-    // Creates column headers
-    var tableHeaderRow = document.createElement("tr");
-    tableHeaderCell = document.createElement("th");
-    var tableHeaderData = document.createTextNode("Product Name")
-    tableHeaderCell.appendChild(tableHeaderData);
-    tableHeaderRow.appendChild(tableHeaderCell);
-    tableHeaderCell = document.createElement("th");
-    tableHeaderData = document.createTextNode("Votes")
-    tableHeaderCell.appendChild(tableHeaderData);
-    tableHeaderRow.appendChild(tableHeaderCell);
-    table.appendChild(tableHeaderRow);
-    for (var j = 0; j <= 13; j++) {
-      var newImageRow = document.createElement("tr");
-      var imageNameCell = document.createElement("td");
-      var imageNameCellData = document.createTextNode(possibleImages[j].name);
-      imageNameCell.appendChild(imageNameCellData);
-      newImageRow.appendChild(imageNameCell);
-      var imageVoteCell = document.createElement("td");
-      var imageVoteCellData = document.createTextNode(possibleImages[j].forVotes);
-      imageVoteCell.appendChild(imageVoteCellData);
-      newImageRow.appendChild(imageVoteCell);
-      table.appendChild(newImageRow);
-    }
-  };
+// function seeResults(event) {
+//     var positionVR = document.getElementById("voting-results");
+//     var newTable = document.createElement("table");
+//     newTable.id = "vote-totals";
+//     positionVR.appendChild(newTable);
+//     // Creates table header
+//     var table = document.getElementById("vote-totals");
+//     var tableHeader = document.createElement("tr");
+//     var tableHeaderCell = document.createElement("th");
+//     tableHeaderCell.setAttribute("colspan", "2");
+//     var tableHeaderName = document.createTextNode("User Vote Totals");
+//     tableHeaderCell.appendChild(tableHeaderName);
+//     tableHeader.appendChild(tableHeaderCell);
+//     table.appendChild(tableHeader);
+//     // Creates column headers
+//     var tableHeaderRow = document.createElement("tr");
+//     tableHeaderCell = document.createElement("th");
+//     var tableHeaderData = document.createTextNode("Product Name")
+//     tableHeaderCell.appendChild(tableHeaderData);
+//     tableHeaderRow.appendChild(tableHeaderCell);
+//     tableHeaderCell = document.createElement("th");
+//     tableHeaderData = document.createTextNode("Votes")
+//     tableHeaderCell.appendChild(tableHeaderData);
+//     tableHeaderRow.appendChild(tableHeaderCell);
+//     table.appendChild(tableHeaderRow);
+//     for (var j = 0; j <= 13; j++) {
+//       var newImageRow = document.createElement("tr");
+//       var imageNameCell = document.createElement("td");
+//       var imageNameCellData = document.createTextNode(possibleImages[j].name);
+//       imageNameCell.appendChild(imageNameCellData);
+//       newImageRow.appendChild(imageNameCell);
+//       var imageVoteCell = document.createElement("td");
+//       var imageVoteCellData = document.createTextNode(possibleImages[j].forVotes);
+//       imageVoteCell.appendChild(imageVoteCellData);
+//       newImageRow.appendChild(imageVoteCell);
+//       table.appendChild(newImageRow);
+//     }
+//   };
