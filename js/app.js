@@ -42,6 +42,8 @@ document.getElementById("results-button").addEventListener("click", seeResults, 
 
 var chosenImages = [];
 
+var clickCounter = 0;
+
 // Function randomly selects three images to display
 function randomImageSelector() {
   chosenImages = [];
@@ -53,6 +55,10 @@ function randomImageSelector() {
     document.getElementById("image"+imageId).src = source;
     chosenImages.push(index);
   }
+  var clickDisplay = document.getElementById("click-counter");
+  clickDisplay.innerHTML = "";
+  var clickDisplayNode = document.createTextNode("You have made " + clickCounter + " picks of 15.");
+  clickDisplay.appendChild(clickDisplayNode);
 };
 
 // CODE THAT IS NOT CURRENTLY WORKING AS INTENDED
@@ -70,6 +76,8 @@ function recordClick(event) {
   console.log(clickedImage);
   var clickedImageSource = clickedImage.src;
   console.log("Clicked SRC: "+clickedImageSource);
+  clickCounter++;
+  console.log(clickCounter);
   for (var index = 0; index < possibleImages.length; index++) {
     console.log("  Compare to: "+possibleImages[index].imageSource);
     if (clickedImageSource.indexOf(possibleImages[index].imageSource) >= 0) {
@@ -78,6 +86,7 @@ function recordClick(event) {
       console.log(possibleImages[index].forVotes);
     }
   }
+
   // CODE THAT IS CURRENTLY NOT WORKING AS INTENDED
   // userPicks = [];
   // for (var k = 0; userPicks.length < 15; k++) {
