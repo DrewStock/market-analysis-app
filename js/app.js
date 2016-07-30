@@ -24,14 +24,18 @@ var possibleImages = [
 ];
 
 // Event listener to call randomImageSelector() on window load event: function selects three images randomly to display
-window.addEventListener("load", randomImageSelector);
+window.addEventListener("load", randomImageSelector, false);
 
 var imagePanel = document.getElementById("images-holder");
 
 // Event listener to call recordClick() on click event: function records image that is voted on by click
 imagePanel.addEventListener("click", recordClick, false);
+
 // Event listener to call randomImageSelector() on click event: function refreshes the selection of images
 imagePanel.addEventListener("click", randomImageSelector, false);
+
+// CODE THAT IS NOT CURRENTLY WORKING AS INTENDED
+// imagePanel.addEventListener("click", voteCounter, false);
 
 // Event listner to call seeResults() on click event: function displays voting results in a table
 document.getElementById("results-button").addEventListener("click", seeResults, false);
@@ -53,6 +57,12 @@ function randomImageSelector() {
 
 // CODE THAT IS NOT CURRENTLY WORKING AS INTENDED
 // var userPicks = [];
+// function voteCounter() {
+//   for (var ballots = 0; ballots <= 15; ballots++) {
+//     var feedback = document.getElementById("voting-feedback");
+//     feedback.innerHTML = "You have picked " + ballots + " images";
+//   }
+// };
 
 // Function records image that is clicked on by user and updates vote count for image object
 function recordClick(event) {
