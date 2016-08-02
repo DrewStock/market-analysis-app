@@ -1,5 +1,5 @@
 h1,h2,h3 {
-  margin-top: 30px;
+  margin-top: 20px 0 10px 0;
   text-align: center;
 }
 
@@ -35,7 +35,7 @@ td {
 #images-holder {
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 20px;
   height: 450px
 }
 
@@ -52,7 +52,7 @@ td {
   display: block;
   width: 30%;
   padding: 10px;
-  margin: 25px auto;
+  margin: 20px auto;
   border: 1px solid #606361;
   border-radius: 5px;
   box-shadow: 0 0 5px #000;
@@ -73,5 +73,5 @@ td {
   bottom: 450px;*/
   display: block;
   width: 85%;
-  margin: 0 auto;
+  margin: 5px auto;
 }

@@ -2,7 +2,7 @@ body {
   background-color: #faebd7;
 }
 
-h1,h2,h3 {
+h1,h2,h3,h4,h5,h6 {
   font-family: 'Raleway', sans-serif;
   color: rgb(21, 22, 30);
 }
@@ -27,7 +27,7 @@ table tr:first-of-type {
 
 #reset-button {
   font-family: Helvetica, sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   background-color: rgb(225, 225, 225);
 }
 
