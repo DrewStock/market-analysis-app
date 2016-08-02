@@ -36,11 +36,8 @@ imagePanel.addEventListener("click", recordClick, false);
 // Event listener to call randomImageSelector() on click event: function refreshes the selection of images
 imagePanel.addEventListener("click", randomImageSelector, false);
 
-// CODE THAT IS NOT CURRENTLY WORKING AS INTENDED
-// imagePanel.addEventListener("click", voteCounter, false);
-
-// Event listner to call seeResults() on click event: function displays voting results in a table
-// document.getElementById("results-button").addEventListener("click", seeResults, false);
+// Event listner to call reset() on click event: function resets click counter to zero and changes visibility property of chart to "hidden"
+document.getElementById("reset-button").addEventListener("click", reset, false);
 
 var chosenImages = [];
 
@@ -48,6 +45,8 @@ var clickCounter = 0;
 
 // Function randomly selects three images to display
 function randomImageSelector() {
+  // var hideResetButton = document.querySelector("input#reset-button");
+  // hideResetButton.style.display = "none";
   chosenImages = [];
   for (var imageId = 1; imageId <= 3; imageId++) {
     do {
@@ -59,18 +58,9 @@ function randomImageSelector() {
   }
   var clickDisplay = document.getElementById("click-counter");
   clickDisplay.innerHTML = "";
-  var clickDisplayNode = document.createTextNode("You have made " + clickCounter + " picks of 15.");
+  var clickDisplayNode = document.createTextNode("You have voted " + clickCounter + " times.");
   clickDisplay.appendChild(clickDisplayNode);
 };
-
-// CODE THAT IS NOT CURRENTLY WORKING AS INTENDED
-// var userPicks = [];
-// function voteCounter() {
-//   for (var ballots = 0; ballots <= 15; ballots++) {
-//     var feedback = document.getElementById("voting-feedback");
-//     feedback.innerHTML = "You have picked " + ballots + " images";
-//   }
-// };
 
 // Function records image that is clicked on by user and updates vote count for image object
 function recordClick(event) {
@@ -80,6 +70,8 @@ function recordClick(event) {
   console.log("Clicked SRC: "+clickedImageSource);
   clickCounter++;
   console.log(clickCounter);
+  var chartQuery = document.querySelector("div.canvasjs-chart-container");
+  var imagesHolderQuery = document.querySelector("div#images-holder");
   for (var index = 0; index < possibleImages.length; index++) {
     console.log("  Compare to: "+possibleImages[index].imageSource);
     if (clickedImageSource.indexOf(possibleImages[index].imageSource) >= 0) {
@@ -88,58 +80,23 @@ function recordClick(event) {
       console.log("    Clicked Item: "+possibleImages[index].name);
       console.log(possibleImages[index].forVotes);
       }
+    if (clickCounter < 15) {
+      chartQuery.style.visibility = "hidden";
+    } else if (clickCounter == 15) {
+      imagesHolderQuery.style.display = "none";
+      chart.render();
+      chartQuery.style.visibility = "visible";
+      // var showResetButton = document.querySelector("input#reset-button");
+      // showResetButton.style.display = "block";
     }
-
-if (clickCounter >= 15) {
-  chart.render();
-}
-
-  // CODE THAT IS CURRENTLY NOT WORKING AS INTENDED
-  // userPicks = [];
-  // for (var k = 0; userPicks.length < 15; k++) {
-  //     userPicks.push(clickedImageSource);
-  //     var feedback = document.getElementById("voting-feedback");
-  //     feedback.innerHTML = "You have picked " + k + " images";
-  //     break;
-  //   }
+  }
 };
 
-// Function that creates a table to display image voting results and adds the table to the document using DOM manipulation
-// function seeResults(event) {
-//     var positionVR = document.getElementById("voting-results");
-//     var newTable = document.createElement("table");
-//     newTable.id = "vote-totals";
-//     positionVR.appendChild(newTable);
-//     // Creates table header
-//     var table = document.getElementById("vote-totals");
-//     var tableHeader = document.createElement("tr");
-//     var tableHeaderCell = document.createElement("th");
-//     tableHeaderCell.setAttribute("colspan", "2");
-//     var tableHeaderName = document.createTextNode("User Vote Totals");
-//     tableHeaderCell.appendChild(tableHeaderName);
-//     tableHeader.appendChild(tableHeaderCell);
-//     table.appendChild(tableHeader);
-//     // Creates column headers
-//     var tableHeaderRow = document.createElement("tr");
-//     tableHeaderCell = document.createElement("th");
-//     var tableHeaderData = document.createTextNode("Product Name")
-//     tableHeaderCell.appendChild(tableHeaderData);
-//     tableHeaderRow.appendChild(tableHeaderCell);
-//     tableHeaderCell = document.createElement("th");
-//     tableHeaderData = document.createTextNode("Votes")
-//     tableHeaderCell.appendChild(tableHeaderData);
-//     tableHeaderRow.appendChild(tableHeaderCell);
-//     table.appendChild(tableHeaderRow);
-//     for (var j = 0; j <= 13; j++) {
-//       var newImageRow = document.createElement("tr");
-//       var imageNameCell = document.createElement("td");
-//       var imageNameCellData = document.createTextNode(possibleImages[j].name);
-//       imageNameCell.appendChild(imageNameCellData);
-//       newImageRow.appendChild(imageNameCell);
-//       var imageVoteCell = document.createElement("td");
-//       var imageVoteCellData = document.createTextNode(possibleImages[j].forVotes);
-//       imageVoteCell.appendChild(imageVoteCellData);
-//       newImageRow.appendChild(imageVoteCell);
-//       table.appendChild(newImageRow);
-//     }
-//   };
+function reset(event) {
+  clickCounter = 0;
+  var chartQuery = document.querySelector("div.canvasjs-chart-container");
+  chartQuery.style.visibility = "hidden";
+  var imagesHolderQuery = document.querySelector("div#images-holder");
+  imagesHolderQuery.style.display = "flex";
+  randomImageSelector();
+};

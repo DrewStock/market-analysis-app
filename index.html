@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h1>Welcome to the Bus Mall Product Picker focus groups!</h1>
-      <h2>To begin, please click on the displayed image that most closely represents<br /> a product that you would be
-      interested in purchasing.</h2>
-      <h3 id="click-counter"></h3>
+      <div id="text-for-user">
+        <h1>Welcome to the Bus Mall Product Picker focus group!</h1>
+        <h3 class="instructions">To begin, please click on the displayed image that most closely represents a product that you would be interested in purchasing.<br /><br /> Each time that you do this, your selection will be counted as a vote for that product. After you've voted 15 times, a chart will display your voting results. Then, if you wish to continue voting, please press the Reset button. Thank you for your participation!</h2>
+        <h3 id="click-counter"></h3>
+      </div>
     </header>
+    <input id="reset-button" type="button" value="Reset">
     <div id="images-holder">
       <div class="image-div">
         <img id="image1">
@@ -22,12 +24,9 @@
         <img id="image3">
       </div>
     </div>
-    <div class="results-wrapper">
-      <section id="voting-results">
-      </section>
+    <div id="results-wrapper">
+      <section id="voting-results"></section>
     </div>
-    </div>
-    <!-- <input id="results-button" type="button" value="View Your Voting Results"> -->
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/chart.js"></script>
     <script type="text/javascript" src="js/canvasjs.min.js"></script>
