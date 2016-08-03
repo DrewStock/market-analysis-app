@@ -8,10 +8,12 @@ function intializeChart() {
 			text: "Product Voting Results"
 		},
 		axisY:{
-				labelFontSize: 20,
+				interval: 1,
+				labelFontSize: 16,
 		},
 		axisX:{
-				labelFontSize: 20,
+				interval: 1,
+				labelFontSize: 16,
 		},
 		data: [
 		{

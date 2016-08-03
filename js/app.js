@@ -1,5 +1,5 @@
 // Object constructor for product images
-var imageObjectConstructor = function(name, source) {
+var Image = function(name, source) {
   this.imageSource = source;
   this.forVotes = 0;
   this.name = name;
@@ -9,20 +9,20 @@ var imageObjectConstructor = function(name, source) {
 
 // Array of product image objects
 var possibleImages = [
-  new imageObjectConstructor("R2D2 Bag", "img/bag.jpg"),
-  new imageObjectConstructor("Banana Slicer", "img/banana.jpg"),
-  new imageObjectConstructor("Yelow Boots", "img/boots.jpg"),
-  new imageObjectConstructor("Red Chair", "img/chair.jpg"),
-  new imageObjectConstructor("Cthulhu", "img/cthulhu.jpg"),
-  new imageObjectConstructor("Dragon Meat", "img/dragon.jpg"),
-  new imageObjectConstructor("Cutlery Pen", "img/pen.jpg"),
-  new imageObjectConstructor("Pizza Scissors", "img/scissors.jpg"),
-  new imageObjectConstructor("Shark Sleeping Bag", "img/shark.jpg"),
-  new imageObjectConstructor("Baby Sweeping Pajamas", "img/sweep.jpg"),
-  new imageObjectConstructor("Unicorn Meat", "img/unicorn.jpg"),
-  new imageObjectConstructor("Tentacle USB", "img/usb.jpg"),
-  new imageObjectConstructor("Watering Can of Futility", "img/water_can.jpg"),
-  new imageObjectConstructor("Egg Shaped Wine Glass", "img/wine_glass.jpg"),
+  new Image("R2D2 Bag", "img/bag.jpg"),
+  new Image("Banana Slicer", "img/banana.jpg"),
+  new Image("Yelow Boots", "img/boots.jpg"),
+  new Image("Red Chair", "img/chair.jpg"),
+  new Image("Cthulhu", "img/cthulhu.jpg"),
+  new Image("Dragon Meat", "img/dragon.jpg"),
+  new Image("Cutlery Pen", "img/pen.jpg"),
+  new Image("Pizza Scissors", "img/scissors.jpg"),
+  new Image("Shark Sleeping Bag", "img/shark.jpg"),
+  new Image("Baby Sweeping Pajamas", "img/sweep.jpg"),
+  new Image("Unicorn Meat", "img/unicorn.jpg"),
+  new Image("Tentacle USB", "img/usb.jpg"),
+  new Image("Watering Can of Futility", "img/water_can.jpg"),
+  new Image("Egg Shaped Wine Glass", "img/wine_glass.jpg"),
 ];
 
 // Event listener to call randomImageSelector() on window load event: function selects three images randomly to display
@@ -45,8 +45,6 @@ var clickCounter = 0;
 
 // Function randomly selects three images to display
 function randomImageSelector() {
-  // var hideResetButton = document.querySelector("input#reset-button");
-  // hideResetButton.style.display = "none";
   chosenImages = [];
   for (var imageId = 1; imageId <= 3; imageId++) {
     do {
@@ -61,6 +59,10 @@ function randomImageSelector() {
   var clickDisplayNode = document.createTextNode("You have voted " + clickCounter + " times.");
   clickDisplay.appendChild(clickDisplayNode);
 };
+
+var resetButtonQuery = document.querySelector("input#reset-button");
+resetButtonQuery.style.display = "none";
+
 
 // Function records image that is clicked on by user and updates vote count for image object
 function recordClick(event) {
@@ -86,8 +88,7 @@ function recordClick(event) {
       imagesHolderQuery.style.display = "none";
       chart.render();
       chartQuery.style.visibility = "visible";
-      // var showResetButton = document.querySelector("input#reset-button");
-      // showResetButton.style.display = "block";
+      resetButtonQuery.style.display = "block";
     }
   }
 };
