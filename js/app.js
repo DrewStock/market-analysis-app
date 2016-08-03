@@ -1,5 +1,5 @@
 // Object constructor for product images
-var imageObjectConstructor = function(name, source) {
+var Image = function(name, source) {
   this.imageSource = source;
   this.forVotes = 0;
   this.name = name;
@@ -7,20 +7,20 @@ var imageObjectConstructor = function(name, source) {
 
 // Array of product image objects
 var possibleImages = [
-  new imageObjectConstructor("R2D2 Bag", "img/bag.jpg"),
-  new imageObjectConstructor("Banana Slicer", "img/banana.jpg"),
-  new imageObjectConstructor("Yelow Boots", "img/boots.jpg"),
-  new imageObjectConstructor("Red Chair", "img/chair.jpg"),
-  new imageObjectConstructor("Cthulhu", "img/cthulhu.jpg"),
-  new imageObjectConstructor("Dragon Meat", "img/dragon.jpg"),
-  new imageObjectConstructor("Cutlery Pen", "img/pen.jpg"),
-  new imageObjectConstructor("Pizza Scissors", "img/scissors.jpg"),
-  new imageObjectConstructor("Shark Sleeping Bag", "img/shark.jpg"),
-  new imageObjectConstructor("Baby Sweeping Pajamas", "img/sweep.jpg"),
-  new imageObjectConstructor("Unicorn Meat", "img/unicorn.jpg"),
-  new imageObjectConstructor("Tentacle USB", "img/usb.jpg"),
-  new imageObjectConstructor("Watering Can of Futility", "img/water_can.jpg"),
-  new imageObjectConstructor("Egg Shaped Wine Glass", "img/wine_glass.jpg"),
+  new Image("R2D2 Bag", "img/bag.jpg"),
+  new Image("Banana Slicer", "img/banana.jpg"),
+  new Image("Yelow Boots", "img/boots.jpg"),
+  new Image("Red Chair", "img/chair.jpg"),
+  new Image("Cthulhu", "img/cthulhu.jpg"),
+  new Image("Dragon Meat", "img/dragon.jpg"),
+  new Image("Cutlery Pen", "img/pen.jpg"),
+  new Image("Pizza Scissors", "img/scissors.jpg"),
+  new Image("Shark Sleeping Bag", "img/shark.jpg"),
+  new Image("Baby Sweeping Pajamas", "img/sweep.jpg"),
+  new Image("Unicorn Meat", "img/unicorn.jpg"),
+  new Image("Tentacle USB", "img/usb.jpg"),
+  new Image("Watering Can of Futility", "img/water_can.jpg"),
+  new Image("Egg Shaped Wine Glass", "img/wine_glass.jpg"),
 ];
 
 // Event listener to call randomImageSelector() on window load event: function selects three images randomly to display
@@ -34,11 +34,9 @@ imagePanel.addEventListener("click", recordClick, false);
 // Event listener to call randomImageSelector() on click event: function refreshes the selection of images
 imagePanel.addEventListener("click", randomImageSelector, false);
 
-// CODE THAT IS NOT CURRENTLY WORKING AS INTENDED
-// imagePanel.addEventListener("click", voteCounter, false);
 
-// Event listner to call seeResults() on click event: function displays voting results in a table
-document.getElementById("results-button").addEventListener("click", seeResults, false);
+// Event listner to call reset() on click event: function resets clickCounter to zero and hides table
+document.getElementById("reset-button").addEventListener("click", reset, false);
 
 var chosenImages = [];
 
@@ -47,6 +45,7 @@ var clickCounter = 0;
 // Function randomly selects three images to display
 function randomImageSelector() {
   chosenImages = [];
+  var resetButtonQuery = document.querySelector("input#reset-button");
   for (var imageId = 1; imageId <= 3; imageId++) {
     do {
       var index = Math.floor(Math.random() * 14);
@@ -59,6 +58,17 @@ function randomImageSelector() {
   clickDisplay.innerHTML = "";
   var clickDisplayNode = document.createTextNode("You have made " + clickCounter + " picks of 15.");
   clickDisplay.appendChild(clickDisplayNode);
+  if (clickCounter < 15) {
+    var resetButtonQuery = document.querySelector("input#reset-button");
+    resetButtonQuery.style.display = "none";
+    console.log();
+    } else if (clickCounter == 15) {
+      var imagesHolderQuery = document.querySelector("div#images-holder");
+      imagesHolderQuery.style.display = "none";
+      resetButtonQuery.style.display = "block";
+      seeResultsQuery.style.display = "block";
+      seeResults();
+    }
 };
 
 // CODE THAT IS NOT CURRENTLY WORKING AS INTENDED
@@ -86,15 +96,18 @@ function recordClick(event) {
       console.log(possibleImages[index].forVotes);
     }
   }
+};
 
-  // CODE THAT IS CURRENTLY NOT WORKING AS INTENDED
-  // userPicks = [];
-  // for (var k = 0; userPicks.length < 15; k++) {
-  //     userPicks.push(clickedImageSource);
-  //     var feedback = document.getElementById("voting-feedback");
-  //     feedback.innerHTML = "You have picked " + k + " images";
-  //     break;
-  //   }
+var seeResultsQuery = document.querySelector("div.results-wrapper");
+
+function reset(event) {
+  clickCounter = 0;
+  seeResultsQuery.style.display = "none";
+  var clearSeeResults = document.getElementById("voting-results");
+  clearSeeResults.innerHTML = "";
+  var imagesHolderQuery = document.querySelector("div#images-holder");
+  imagesHolderQuery.style.display = "flex";
+  randomImageSelector();
 };
 
 // Function that creates a table to display image voting results and adds the table to the document using DOM manipulation

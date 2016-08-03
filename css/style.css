@@ -1,5 +1,6 @@
 body {
   background-color: #faebd7;
+  margin: 0;
 }
 
 h1,h2,h3 {
@@ -30,18 +31,13 @@ img {
 
 .results-wrapper {
   display: block;
-  margin: 25px auto;
+  margin: 10px auto;
   font-family: Helvetica, sans-serif;
 }
 
-#results-button {
-  display: block;
-  margin: 25px auto;
- }
-
 table {
   width: 500px;
-  margin: 50px auto;
+  margin: 25px auto;
   font-size: 20px;
   border-spacing: 0;
   background-color: rgb(250, 250, 250);
@@ -72,7 +68,8 @@ th {
   border-bottom: 2px solid #a0a8aa;
 }
 
-#results-button {
+#reset-button {
+  display: block;
   font-family: Helvetica, sans-serif;
   font-size: 30px;
   background-color: rgb(225, 225, 225);
