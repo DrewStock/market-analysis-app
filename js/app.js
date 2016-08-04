@@ -8,25 +8,39 @@ var Image = function(name, source) {
 };
 
 // Array of product image objects
-var possibleImages = [
-  new Image("R2D2 Bag", "img/bag.jpg"),
-  new Image("Banana Slicer", "img/banana.jpg"),
-  new Image("Yelow Boots", "img/boots.jpg"),
-  new Image("Red Chair", "img/chair.jpg"),
-  new Image("Cthulhu", "img/cthulhu.jpg"),
-  new Image("Dragon Meat", "img/dragon.jpg"),
-  new Image("Cutlery Pen", "img/pen.jpg"),
-  new Image("Pizza Scissors", "img/scissors.jpg"),
-  new Image("Shark Sleeping Bag", "img/shark.jpg"),
-  new Image("Baby Sweeping Pajamas", "img/sweep.jpg"),
-  new Image("Unicorn Meat", "img/unicorn.jpg"),
-  new Image("Tentacle USB", "img/usb.jpg"),
-  new Image("Watering Can of Futility", "img/water_can.jpg"),
-  new Image("Egg Shaped Wine Glass", "img/wine_glass.jpg"),
-];
+var possibleImages = [];
 
-// Event listener to call randomImageSelector() on window load event: function selects three images randomly to display
-window.addEventListener("load", randomImageSelector, false);
+var storedImages;
+
+function loadImages() {
+  if (localStorage.getItem("images") == null) {
+   possibleImages.push(new Image("R2D2 Bag", "img/bag.jpg"));
+   possibleImages.push(new Image("Banana Slicer", "img/banana.jpg"));
+   possibleImages.push(new Image("Yelow Boots", "img/boots.jpg"));
+   possibleImages.push(new Image("Red Chair", "img/chair.jpg"));
+   possibleImages.push(new Image("Cthulhu", "img/cthulhu.jpg"));
+   possibleImages.push(new Image("Dragon Meat", "img/dragon.jpg"));
+   possibleImages.push(new Image("Cutlery Pen", "img/pen.jpg"));
+   possibleImages.push(new Image("Pizza Scissors", "img/scissors.jpg"));
+   possibleImages.push(new Image("Shark Sleeping Bag", "img/shark.jpg"));
+   possibleImages.push(new Image("Baby Sweeping Pajamas", "img/sweep.jpg"));
+   possibleImages.push(new Image("Unicorn Meat", "img/unicorn.jpg"));
+   possibleImages.push(new Image("Tentacle USB", "img/usb.jpg"));
+   possibleImages.push(new Image("Watering Can of Futility", "img/water_can.jpg"));
+   possibleImages.push(new Image("Egg Shaped Wine Glass", "img/wine_glass.jpg"));
+   randomImageSelector();
+ } else {
+   var storedImages = JSON.parse(localStorage.getItem("images"));
+   for (var index = 0; index < storedImages.length; index++) {
+     var image = storedImages[index];
+     var tracker = new Image(image.name, image.imageSource);
+     tracker.forVotes = image.forVotes;
+     possibleImages.push(tracker);
+    }
+    randomImageSelector();
+  }
+};
+
 
 var imagePanel = document.getElementById("images-holder");
 
@@ -38,6 +52,8 @@ imagePanel.addEventListener("click", randomImageSelector, false);
 
 // Event listner to call reset() on click event: function resets click counter to zero and changes visibility property of chart to "hidden"
 document.getElementById("reset-button").addEventListener("click", reset, false);
+
+window.addEventListener("load", loadImages);
 
 var chosenImages = [];
 
@@ -94,6 +110,7 @@ function recordClick(event) {
 };
 
 function reset(event) {
+  localStorage.setItem("images", JSON.stringify(possibleImages));
   clickCounter = 0;
   var chartQuery = document.querySelector("div.canvasjs-chart-container");
   chartQuery.style.visibility = "hidden";
