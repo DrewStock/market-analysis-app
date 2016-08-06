@@ -72,12 +72,14 @@ function recordClick(event) {
       possibleImages[index].y++;
     }
     if (clickCounter < 15) {
-      sessionChartQuery.style.display = "none";
+      // sessionChartQuery.style.display = "none";
     } else if (clickCounter == 15) {
       chart.render();
+
       imagesHolderQuery.style.display = "none";
       continueButtonQuery.style.display = "block";
       sessionChartQuery.style.display = "block";
+      chartElementTrans();
       localStorage.setItem("images", JSON.stringify(possibleImages));
     }
   }
@@ -137,6 +139,10 @@ function continueOn(event) {
   randomImageSelector();
   continueButtonQuery.style.display = "none";
   resultsButtonQuery.style.display = "block";
-  sessionChartQuery.style.display = "none"; 
+  sessionChartQuery.style.display = "none";
   imagesHolderQuery.style.display = "flex";
 };
+
+function chartElementTrans() {
+  document.getElementById('results-wrapper').setAttribute('class', 'chart-transitions');
+}
