@@ -40,6 +40,6 @@ table tr:first-of-type {
   background-color: #fff;
 }
 
-.results-wrapper {
-  font-family: Helvetica, sans-serif;
+#results-wrapper.chart-transitions {
+  opacity: 1;
 }
