@@ -8,12 +8,13 @@
     <header>
       <div id="text-for-user">
         <h1>Welcome to the Bus Mall Product Picker focus group!</h1>
-        <h4 class="instructions">To begin, please click on the displayed image that most closely represents a product that you would be interested in purchasing.<br /><br /> Each time that you do this, your selection will be counted as a vote for that product. After you've voted 15 times, a chart will display your voting results. Then, if you wish to continue voting, please press the Reset button. Thank you for your participation!</h4>
+        <h4 class="instructions">To begin, please click on the displayed image that most closely represents a product that you would be interested in purchasing. Each time that you do this, your selection will be counted as a vote for that product. After you've voted 15 times, a chart will display your voting results. Then, if you wish to continue voting, please press Continue. To view all voting results, please press All Results, then click Reset to continue voting. Thank you for your participation!</h4>
         <h3 id="click-counter"></h3>
       </div>
     </header>
-    <input id="reset-button" type="button" value="Reset">
-    <input id="marketer-button" type="button" value="All Voter Results">
+    <input id="reset-button" class="buttons" type="button" value="Continue">
+    <input id="results-button" class="buttons" type="button" value="All Results">
+    <input id="clear-results-button" class="buttons" type="button" value="Reset">
     <div id="images-holder">
       <div class="image-div">
         <img id="image1">
@@ -28,8 +29,13 @@
     <div id="results-wrapper">
       <section id="voting-results"></section>
     </div>
+    <div id="marketer-wrapper">
+      <section id="marketer-results"></section>
+    </div>
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript" src="js/event_listeners.js"></script>
     <script type="text/javascript" src="js/canvasjs.min.js"></script>
+    <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript" src="js/marketer_chart.js"></script>
   </body>
 </html>

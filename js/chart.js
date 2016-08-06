@@ -5,7 +5,7 @@ var imageChart = possibleImages;
 function intializeChart() {
 	var chartProperties = {
 		title:{
-			text: "Product Voting Results"
+			text: "Voting Results - Current Session"
 		},
 		axisY:{
 				interval: 1,
@@ -18,7 +18,7 @@ function intializeChart() {
 		data: [
 		{
 			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "bar",
+			type: "column",
 			dataPoints: imageChart
 		}
 		]

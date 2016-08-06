@@ -1,5 +1,5 @@
 h1,h2,h3 {
-  margin-top: 20px 0 10px 0;
+  margin: 20px 0 10px 0;
   text-align: center;
 }
 
@@ -39,10 +39,10 @@ td {
   height: 450px
 }
 
-#reset-button {
+.buttons {
   display: block;
   padding: 5px 5px;
-  margin: 10px auto;
+  margin: 15px auto;
   border: 1px solid #606361;
   border-radius: 5px;
   box-shadow: 0 0 5px #000;
@@ -69,9 +69,15 @@ td {
 }
 
 #results-wrapper {
-  /*position: relative;
-  bottom: 450px;*/
   display: block;
   width: 85%;
+  height: 500px;
+  margin: 5px auto;
+}
+
+#marketer-wrapper {
+  display: block;
+  width: 85%;
+  height: 500px;
   margin: 5px auto;
 }

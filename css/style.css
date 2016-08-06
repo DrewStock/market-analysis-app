@@ -25,13 +25,13 @@ table tr:first-of-type {
   font-weight: bold;
 }
 
-#reset-button {
+.buttons {
   font-family: Helvetica, sans-serif;
   font-size: 20px;
   background-color: rgb(225, 225, 225);
 }
 
-#results-button:hover{
+.buttons:hover{
   background-color: #fff;
 }
 
