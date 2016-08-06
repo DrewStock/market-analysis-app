@@ -10,9 +10,14 @@ Market Analysis app is an application that enables users to select images that r
     * Created style.css for font and color styles
     * Created layout.css for layout
     * Created main.css to use @import to link style.css and layout.css
-  * ChartJS
-    * Add chart to document that displays user vote totals
+  * CanvasJS
+    * Added chart to document that displays user's session vote totals
   * JavaScript
     * Adds element for user to see count of their clicks and increments counter
     * Added reset function and event listener:
       * When user clicks reset button, the chart is hidden and the counter is reset to zero
+* Version 1.2
+  * JavaScript
+    * Implemented local storage to persist voting totals
+  * CanvasJS
+    * Added chart to document that displays all voting results (from local storage)

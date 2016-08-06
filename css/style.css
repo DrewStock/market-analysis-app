@@ -26,13 +26,14 @@ table tr:first-of-type {
 }
 
 .buttons {
+  font-weight: bold;
   font-family: Helvetica, sans-serif;
   font-size: 20px;
-  background-color: rgb(225, 225, 225);
+  background-color: #d3d3d3;
 }
 
 .buttons:hover{
-  background-color: #fff;
+  background-color: #f0fff0;
 }
 
 #click-counter {

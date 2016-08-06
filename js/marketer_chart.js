@@ -1,6 +1,6 @@
 var chart2;
 
-var marketerChart = blah;
+var marketerChart = marketerTotals;
 
 function intializeMarketerChart() {
 	var chartProperties = {
@@ -18,7 +18,7 @@ function intializeMarketerChart() {
 		data: [
 		{
 			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "column",
+			type: "bar",
 			dataPoints: marketerChart
 		}
 		]

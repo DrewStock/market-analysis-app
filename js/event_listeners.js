@@ -6,11 +6,14 @@ imagePanel.addEventListener("click", recordClick, false);
 // Event listener to call randomImageSelector() on click event: function refreshes the selection of images
 imagePanel.addEventListener("click", randomImageSelector, false);
 
-// Event listner to call reset() on click event: function resets click counter to zero and changes visibility property of chart to "hidden"
-document.getElementById("reset-button").addEventListener("click", reset, false);
+// Event listener to call continueOn() on click event: function resets click counter to zero and changes visibility property of chart to "hidden"
+document.getElementById("continue-button").addEventListener("click", continueOn, false);
 
-document.getElementById("results-button").addEventListener("click", viewAll);
+// Event listener to call viewAll() on click event: function displays chart with all voting results
+document.getElementById("results-button").addEventListener("click", viewAll, false);
 
-document.getElementById("clear-results-button").addEventListener("click", returnToVoting);
+// Event listener to call returnToVoting() on click event: function hides chart and returns to image voting
+document.getElementById("clear-results-button").addEventListener("click", returnToVoting, false);
 
+// Event listener to load images on window load
 window.addEventListener("load", loadImages);
