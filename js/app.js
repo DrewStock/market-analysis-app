@@ -38,6 +38,7 @@ function loadImages() {
       }
     }
   randomImageSelector();
+  imagesHolderTrans();
 };
 
 var chosenImages = [];
@@ -66,20 +67,19 @@ function recordClick(event) {
   var clickedImage = event.target;
   var clickedImageSource = clickedImage.src;
   clickCounter++;
+  imagesHolderReverse();
   for (var index = 0; index < possibleImages.length; index++) {
     if (clickedImageSource.indexOf(possibleImages[index].imageSource) >= 0) {
       possibleImages[index].forVotes++;
       possibleImages[index].y++;
+    } if (clickCounter < 15 ) {
+      setTimeout(imagesHolderTrans, 250);
     }
-    if (clickCounter < 15) {
-      // sessionChartQuery.style.display = "none";
-    } else if (clickCounter == 15) {
+     else if (clickCounter == 15) {
+      imagesHolderReverse();
       chart.render();
-
-      imagesHolderQuery.style.display = "none";
       continueButtonQuery.style.display = "block";
-      sessionChartQuery.style.display = "block";
-      chartElementTrans();
+      sessionChartTrans();
       localStorage.setItem("images", JSON.stringify(possibleImages));
     }
   }
@@ -91,8 +91,7 @@ var marketerTotals = [];
 
 // Function to view chart with all voting results
 function viewAll() {
-  sessionChartQuery.style.display = "none";
-  imagesHolderQuery.style.display = "none";
+  imagesHolderReverse();
   var marketerResults = JSON.parse(localStorage.getItem("images"));
   for (var index = 0; index < marketerResults.length; index++) {
     var image = marketerResults[index];
@@ -102,11 +101,11 @@ function viewAll() {
     marketerTracker.x = index;
     marketerTotals.push(marketerTracker);
     }
-    sessionChartQuery.style.display = "none";
-    marketerChartQuery.style.display = "block";
+    sessionChartReverse();
     chart2.render();
     resultsButtonQuery.style.display = "none";
     clearResultsQuery.style.display = "block";
+    marketerChartTrans();
 };
 
 var continueButtonQuery = document.querySelector("input#continue-button");
@@ -118,31 +117,51 @@ resultsButtonQuery.style.display = "none";
 var clearResultsQuery = document.querySelector("input#clear-results-button")
 clearResultsQuery.style.display = "none";
 
-var imagesHolderQuery = document.querySelector("div#images-holder");
-
-var sessionChartQuery = document.querySelector("div#results-wrapper");
-
-var marketerChartQuery = document.querySelector("div#marketer-wrapper");
-
-var clearResultsQuery = document.querySelector("input#clear-results-button")
-
 // Function to hide marketer chart and return to voting
 function returnToVoting() {
-  marketerChartQuery.style.display = "none";
-  imagesHolderQuery.style.display = "flex";
+  marketerChartReverse();
+  sessionChartReverse();
+  imagesHolderTrans();
   clearResultsQuery.style.display = "none";
 };
 
 // Function to hide session results chart and continue voting
 function continueOn(event) {
   clickCounter = 0;
+  imagesHolderReverse();
   randomImageSelector();
-  continueButtonQuery.style.display = "none";
+  imagesHolderTrans();
   resultsButtonQuery.style.display = "block";
-  sessionChartQuery.style.display = "none";
-  imagesHolderQuery.style.display = "flex";
+  continueButtonQuery.style.display = "none";
+  sessionChartReverse();
 };
 
-function chartElementTrans() {
-  document.getElementById('results-wrapper').setAttribute('class', 'chart-transitions');
+//Function to set class attribute("chart-transition") of div("results-wrapper")
+function sessionChartTrans() {
+  document.getElementById("results-wrapper").setAttribute("class", "chart-transition");
+};
+
+//Function to remove class attribute of div("results-wrapper")
+function sessionChartReverse() {
+  document.getElementById("results-wrapper").setAttribute("class", "");
+};
+
+//Function to set class attribute("chart-transition") of div("marketer-wrapper")
+function marketerChartTrans() {
+  document.getElementById("marketer-wrapper").setAttribute("class", "chart-transition");
 }
+
+//Function to remove class attribute of div("marketer-wrapper")
+function marketerChartReverse() {
+  document.getElementById("marketer-wrapper").setAttribute("class", "");
+};
+
+//Function to set class attribute("images-transition") of div("images-holder")
+function imagesHolderTrans() {
+  document.getElementById("images-holder").setAttribute("class", "images-transition");
+};
+
+//Function to remove class attribute of div("images-holder")
+function imagesHolderReverse() {
+  document.getElementById("images-holder").setAttribute("class", "");
+};

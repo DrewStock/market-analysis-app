@@ -8,7 +8,7 @@ function intializeMarketerChart() {
 			text: "Voting Results - All Sessions"
 		},
 		axisY:{
-				interval: 5,
+				interval: 10,
 				labelFontSize: 16,
 		},
 		axisX:{

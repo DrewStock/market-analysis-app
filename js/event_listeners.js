@@ -4,7 +4,7 @@ var imagePanel = document.getElementById("images-holder");
 imagePanel.addEventListener("click", recordClick, false);
 
 // Event listener to call randomImageSelector() on click event: function refreshes the selection of images
-imagePanel.addEventListener("click", randomImageSelector, false);
+imagePanel.addEventListener("click", randomImageSelector);
 
 // Event listener to call continueOn() on click event: function resets click counter to zero and changes visibility property of chart to "hidden"
 document.getElementById("continue-button").addEventListener("click", continueOn, false);

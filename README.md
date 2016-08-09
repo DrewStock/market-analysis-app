@@ -21,3 +21,7 @@ Market Analysis app is an application that enables users to select images that r
     * Implemented local storage to persist voting totals
   * CanvasJS
     * Added chart to document that displays all voting results (from local storage)
+* Version 1.3
+  * CSS & JavaScript
+    * Added transitions to fade in/fade out images as the user is voting
+    * Added transitions to fade in/fade out charts

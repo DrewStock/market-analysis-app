@@ -6,37 +6,18 @@ h1,h2,h3 {
 img {
   width: 250px;
   padding: 20px;
-  border: 1px solid #5f9ea0;
+  border: 0px;
   border-radius: 5px;
-}
+  box-shadow: 0 0 5px #000;
 
-table {
-  width: 500px;
-  margin: 50px auto;
-  border: 2px solid #a0a8aa;
-  border-spacing: 0;
-  border-radius: 5px;
-  box-shadow: 0 0 3px hsla(0,0%,20%,0.75);
-}
-
-th {
-  width: 250px;
-  padding: 5px;
-  text-align: center;
-  border-bottom: 2px solid #a0a8aa;
-}
-
-td {
-  padding: 5px;
-  text-align: center;
-  border-bottom: 2px solid #a0a8aa;
 }
 
 #images-holder {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  height: 450px
+  height: 0px;
+  opacity: 0;
 }
 
 .buttons {
@@ -58,28 +39,56 @@ td {
   box-shadow: 0 0 5px #000;
 }
 
+#text-for-user {
+  width: 60%;
+  margin: 0 auto;
+}
+
 .image-div {
   margin: 10px;
 }
 
 .instructions {
+  line-height: 24px;
+  display: inline-block;
   text-align: justify;
-  width: 60%;
   margin: 0 auto;
+  padding: 10px 20px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: azure;
 }
 
 #results-wrapper {
   display: block;
   width: 85%;
-  height: 500px;
+  height: 0px;
   margin: 5px auto;
   opacity: 0;
-  transition: all 1.5s;
 }
 
 #marketer-wrapper {
   display: block;
   width: 85%;
-  height: 500px;
+  height: 0px;
   margin: 5px auto;
+  opacity: 0;
+}
+
+#images-holder.images-transition {
+  height: 450px;
+  opacity: 1;
+  transition: all .75s;
+}
+
+#results-wrapper.chart-transition {
+  height: 450px;
+  opacity: 1;
+  transition: all .75s;
+}
+
+#marketer-wrapper.chart-transition {
+  height: 450px;
+  opacity: 1;
+  transition: all .75s;
 }
